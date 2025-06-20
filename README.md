@@ -10,29 +10,32 @@ Flash Memory Read and Write:
 The project can write a specific block of data to the microcontroller’s internal flash memory and later read it back for verification.
 These operations are essential for storing persistent data, saving configuration settings, or performing firmware updates in embedded systems.
 Data integrity and safety checks are performed during flash operations.
+
 LED Control:
+Onboard LED is controlled via GPIO pins. Software will turn on LED(B0) for 500ms if flash write is successful. 
+It will turn on other LED(B1) for 500ms if erase is successful.
 
-The onboard LED is controlled via GPIO pins.
-The software can turn the LED on or off, or make it blink at certain intervals to indicate system status or operation results.
 Button Reading:
+User button status is monitored.
+When the button(B4) is pressed, it performs a flash write operation, when the other button is pressed(B5), it performs a flash delete operation.
 
-The user button state is monitored.
-When the button is pressed, it can trigger a flash write/read operation or change the LED state as feedback.
 Hardware Abstraction Layer (HAL) Usage:
-
 The project uses Puya’s HAL (Hardware Abstraction Layer) drivers to simplify hardware access and improve code portability.
 This allows easy management of peripherals like GPIO, Flash, and RCC without dealing directly with hardware registers.
+
 Project Workflow
 On startup, the system initializes all necessary hardware peripherals (clock, GPIO, Flash).
 In the main loop, the software checks if the user button is pressed.
 If the button is pressed, a predefined data block is written to flash memory, then read back and verified.
-If the operation is successful, the LED lights up or blinks in a specific pattern; if there is an error, the LED indicates this with a different pattern.
+If the operation is successful, the LED lights up.
+
 Use Cases
 Data Storage: Storing persistent settings or user data.
 Firmware Update: Writing new firmware code to flash memory.
 Hardware Testing: Verifying the correct operation of Flash, GPIO, and other peripherals.
+
 Summary
-This project demonstrates safe and reliable data writing and reading to the flash memory of the PY32F002B1 microcontroller, while also showcasing basic input/output control (LED, button). It serves as a reference for embedded system development and microcontroller programming.
+This project demonstrates safe and reliable data writing ,eras,ing and reading to the flash memory of the PY32F002B1 microcontroller, while also showcasing basic input/output control (LED, button). It serves as a reference for embedded system development and microcontroller programming.
 **********************************************************************************************************************
 Here is a detailed explanation of what each function does:
 
